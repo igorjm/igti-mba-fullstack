@@ -1,39 +1,22 @@
-function isNumber(value) {
-  return !isNaN(value) && value !== ' ';
-}
-
-function isLetter(value) {
-  return value.toLowerCase() !== value.toUpperCase();
-}
-
-function isLowerCaseLetter(value) {
-  return isLetter(value) && value == value.toLowerCase();
-}
-
-function isUpperCaseLetter(value) {
-  return isLetter(value) && value == value.toLowerCase();
-}
-
-function isSymbol(value) {}
-
 var validations = [
   {
-    id: 'v1',
-    description: 'A senha contém pelo menos 8 caracteres',
-    validationsFunction: function validate(value) {
+    id: 'validation01',
+    description: 'A senha contém pelo menos 8 caracteres.',
+    validator: function validate(value) {
       return value.length >= 8;
     },
   },
+
   {
-    id: 'v2',
-    description: 'A senha contém pelo menos 1 caractere numérico',
-    validationsFunction: function validate(value) {
+    id: 'validation02',
+    description: 'A senha contém pelo menos um valor numérico.',
+    validator: function validate(value) {
       var array = value.split('');
 
       for (var i = 0; i < array.length; i++) {
-        var currentNumber = array[i];
+        var currentChar = array[i];
 
-        if (isNumber(currentNumber)) {
+        if (!isNaN(currentChar)) {
           return true;
         }
       }
@@ -41,148 +24,117 @@ var validations = [
       return false;
     },
   },
+
   {
-    id: 'v3',
-    description: 'A senha contém pelo menos 1 caractere minúsculo',
-    validationsFunction: function validate(value) {
+    id: 'validation03',
+    description: 'A senha contém pelo menos um caractere minúsculo.',
+    validator: function validate(value) {
       var array = value.split('');
 
       for (var i = 0; i < array.length; i++) {
-        var currentValue = array[i];
+        var currentChar = array[i];
 
-        if (isLowerCaseLetter(currentValue)) {
-          return true;
-        }
-      }
-
-      return false;
-    },
-  },
-  {
-    id: 'v4',
-    description: 'A senha contém pelo menos 1 caractere maiúscula',
-    validationsFunction: function validate(value) {
-      var array = value.split('');
-
-      for (var i = 0; i < array.length; i++) {
-        var currentValue = array[i];
-
-        if (isUpperCaseLetter(currentValue)) {
-          return true;
-        }
-      }
-
-      return false;
-    },
-  },
-  {
-    id: 'v5',
-    description: 'A senha contém pelo menos 1 caractere especial',
-    validationsFunction: function validate(value) {
-      var array = value.split('');
-
-      for (var i = 0; i < array.length; i++) {
-        var currentValue = array[i];
-
-        if (isSymbol(currentValue)) {
-          return true;
-        }
-      }
-
-      return false;
-    },
-  },
-  {
-    id: 'v6',
-    description: 'A senha não pode conter espaços em branco',
-    validationsFunction: function validate(value) {
-      var array = value.split('');
-
-      for (var i = 0; i < array.length; i++) {
-        var currentValue = array[i];
-
-        if (currentValue === ' ') {
-          return false;
-        }
-      }
-
-      return true;
-    },
-  },
-  {
-    id: 'v7',
-    description: 'A senha não pode conter sequência de 3 números consecutivos',
-    validationsFunction: function validate(value) {
-      var array = value.split('');
-
-      for (var i = 0; i < array.length; i++) {
-        var currentValue = array[i];
-
-        if (isNumber(currentValue)) {
-          var next1 = array[i + 1];
-          var next2 = array[i + 2];
-
-          var number1 = parseInt(currentValue, 10);
-          var number2 = parseInt(next1, 10);
-          var number3 = parseInt(next2, 10);
-
-          if (number2) {
-            return false;
+        if (currentChar.toLowerCase() !== currentChar.toUpperCase()) {
+          if (currentChar === currentChar.toLowerCase()) {
+            return true;
           }
         }
       }
 
-      return true;
+      return false;
+    },
+  },
+
+  {
+    id: 'validation04',
+    description: 'A senha contém pelo menos um caractere maiúsculo.',
+    validator: function validate(value) {
+      var array = value.split('');
+
+      for (var i = 0; i < array.length; i++) {
+        var currentChar = array[i];
+
+        if (currentChar.toLowerCase() !== currentChar.toUpperCase()) {
+          if (currentChar === currentChar.toUpperCase()) {
+            return true;
+          }
+        }
+      }
+
+      return false;
+    },
+  },
+
+  {
+    id: 'validation05',
+    description: 'A senha contém pelo menos um símbolo.',
+    validator: function validate(value) {
+      var array = value.split('');
+
+      for (var i = 0; i < array.length; i++) {
+        var currentChar = array[i];
+
+        if (currentChar.toLowerCase() === currentChar.toUpperCase()) {
+          if (currentChar !== ' ') {
+            return true;
+          }
+        }
+      }
+
+      return false;
     },
   },
 ];
 
-window.addEventListener('load', start);
+var currentPassword = '';
 
 function start() {
   var inputPassword = document.querySelector('#inputPassword');
-  inputPassword.addEventListener('input', handleInputChange);
+  inputPassword.addEventListener('input', handlePasswordChange);
 
-  validatePasswod('');
+  calculate();
 }
 
-function handleInputChange(event) {
-  var password = event.target.value;
-
-  var typedPassowrd = document.querySelector('typedPassword');
-  typedPassowrd.textContent = password;
-
-  validatePassword(password);
+function handlePasswordChange(event) {
+  currentPassword = event.target.value;
+  calculate();
 }
 
-function validatePasswod(password) {
-  var divValidations = document.querySelector('#divValidations');
-  divValidations.innerHTML = '';
+function calculate() {
+  var divAnalysis = document.querySelector('#divAnalysis');
+  divAnalysis.innerHTML = '';
+
+  var ul = document.createElement('ul');
 
   for (var i = 0; i < validations.length; i++) {
     var currentValidation = validations[i];
 
+    var li = document.createElement('li');
     var div = document.createElement('div');
     var label = document.createElement('label');
     var input = document.createElement('input');
     var span = document.createElement('span');
 
+    span.textContent = currentValidation.description;
+
     input.type = 'checkbox';
     input.disabled = true;
-    input.checked = currentValidation.validationsFunction(password);
-
-    span.textContent = currentValidation.description;
+    input.checked = currentValidation.validator(currentPassword);
 
     label.appendChild(input);
     label.appendChild(span);
 
     div.appendChild(label);
-
-    divValidations.appendChild(div);
+    li.appendChild(div);
+    ul.appendChild(li);
   }
 
-  // var inputSize = document.querySelector('#inputSize');
-  // inputSize.checked = password.length >= 8;
+  var password = document.createElement('p');
+  password.innerHTML =
+    'Senha digitada: <strong>' + currentPassword + '</strong>';
+
+  divAnalysis.appendChild(password);
+  divAnalysis.appendChild(ul);
 }
 
 start();
