@@ -16,8 +16,6 @@ function start() {
   components.inputDivisao = document.getElementById('inputDivisao');
 }
 
-var firstValue = '';
-
 function calculate() {
   var val1 = document.getElementById('inputFirst').value;
   var val2 = document.getElementById('inputSecond').value;
