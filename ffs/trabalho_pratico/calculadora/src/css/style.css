@@ -1,0 +1,29 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  padding: 36px;
+}
+
+h3 {
+  color: #26a69a;
+  opacity: 0.6;
+}
+
+.container {
+  padding: 36px;
+  border: 1px solid #26a69a;
+  border-radius: 12px;
+}
+
+.resultado {
+  font-weight: bold;
+  color: #26a69a;
+}
+
+.bg-image img {
+  width: 100%;
+}

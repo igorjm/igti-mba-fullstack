@@ -1,0 +1,98 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Compiled and minified CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+    />
+
+    <link href="./css/style.css" rel="stylesheet" />
+    <title>Cálculadora</title>
+  </head>
+
+  <body>
+    <h3 class="center">Cálculadora Básica</h1>
+
+    <div class="container">
+      <div class="row">
+        <div class="input-field col s4">
+          <input id="inputFirst" type="number" />
+          <label for="inputFirst">Digite o primeiro valor:</label>
+        </div>
+
+        <div class="input-field col s4">
+          <input id="inputSecond" type="number" />
+          <label for="inputSecond">Digite o segundo valor:</label>
+        </div>
+
+        <div class="col s4">
+          <button class="waves-effect waves-light btn-large" onclick="calculate()">Calcular</a>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="results col s6">
+          <div class="input-field">
+            <input
+              id="inputSoma"
+              type="text"
+              readonly
+              placeholder="Somatória"
+              class="resultado"
+            />
+            <label for="inputSoma" class="active">A soma dos valores é:</label>
+          </div>
+  
+          <div class="input-field">
+            <input
+              id="inputSub"
+              type="text"
+              readonly
+              placeholder="Subtração"
+              class="resultado"
+            />
+            <label for="inputSub" class="active"
+              >A subtração dos valores é:</label
+            >
+          </div>
+  
+          <div class="input-field">
+            <input
+              id="inputMultiplicacao"
+              type="text"
+              readonly
+              placeholder="Multiplicação"
+              class="resultado"
+            />
+            <label for="inputMultiplicacao" class="active"
+              >A multiplicação dos valores é:</label
+            >
+          </div>
+  
+          <div class="input-field">
+            <input
+              id="inputDivisao"
+              type="text"
+              readonly
+              placeholder="Divisão"
+              class="resultado"
+            />
+            <label for="inputDivisao" class="active"
+              >A divisão dos valores é:</label
+            >
+          </div>
+        </div>
+        <div class="bg-image col s6">
+          <img src="../public/un_bg.png" alt="Background Mathematics"/>
+        </div>
+      </div>
+    </div>
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script defer src="./js/script.js"></script>
+  </body>
+</html>
