@@ -1,8 +1,15 @@
-const components = {
+const componentsMath = {
   inputSoma: null,
   inputSub: null,
   inputDivisao: null,
   inputMultiplicacao: null,
+};
+
+const componentsIMC = {
+  inputAltura: null,
+  inputPeso: null,
+  inputIMC: null,
+  inputResultadoIMC: null,
 };
 
 window.addEventListener('load', start);
@@ -10,10 +17,52 @@ window.addEventListener('load', start);
 function start() {
   console.log('DOM');
 
-  components.inputSoma = document.getElementById('inputSoma');
-  components.inputSub = document.getElementById('inputSub');
-  components.inputMultiplicacao = document.getElementById('inputMultiplicacao');
-  components.inputDivisao = document.getElementById('inputDivisao');
+  componentsMath.inputSoma = document.getElementById('inputSoma');
+  componentsMath.inputSub = document.getElementById('inputSub');
+  componentsMath.inputMultiplicacao = document.getElementById(
+    'inputMultiplicacao'
+  );
+  componentsMath.inputDivisao = document.getElementById('inputDivisao');
+
+  componentsIMC.inputAltura = document.getElementById('inputAltura');
+  componentsIMC.inputPeso = document.getElementById('inputPeso');
+  componentsIMC.inputIMC = document.getElementById('inputIMC');
+  componentsIMC.inputResultadoIMC = document.getElementById(
+    'inputResultadoIMC'
+  );
+
+  componentsIMC.inputAltura.addEventListener('input', handleCalculateIMC);
+}
+
+function handleCalculateIMC() {
+  var peso = document.querySelector('#inputPeso').value;
+  var alturaCentimetro = document.querySelector('#inputAltura').value;
+
+  var alturaMetros = alturaCentimetro / 100;
+
+  var imc = peso / (alturaMetros * alturaMetros);
+
+  console.log(imc);
+  console.log(typeof imc);
+
+  if (imc < 18.5) {
+    componentsIMC.inputResultadoIMC.value = 'Você está abaixo do peso ideal.';
+    componentsIMC.inputResultadoIMC.setAttribute('style', 'color: lightblue');
+  } else if (imc > 18.5 && imc < 25) {
+    componentsIMC.inputResultadoIMC.value = 'Você está com o peso normal.';
+    componentsIMC.inputResultadoIMC.setAttribute('style', 'color: blue');
+  } else if (imc > 25 && imc < 30) {
+    componentsIMC.inputResultadoIMC.value = 'Você está acima do peso ideal.';
+    componentsIMC.inputResultadoIMC.setAttribute('style', 'color: orange');
+  } else if (imc > 30) {
+    componentsIMC.inputResultadoIMC.value = 'Você está com obesidade.';
+    componentsIMC.inputResultadoIMC.setAttribute('style', 'color: red');
+  } else {
+    componentsIMC.inputResultadoIMC.componentsIMC.inputResultadoIMC.value =
+      'Valor não reconhecido.';
+  }
+
+  componentsIMC.inputIMC.value = imc + ' Kg/m2';
 }
 
 function calculate() {

@@ -27,3 +27,19 @@ h3 {
 .bg-image img {
   width: 100%;
 }
+
+.indicadores .collection .collection-item .magreza {
+  color: lightblue;
+}
+
+.indicadores .collection .collection-item .normal {
+  color: blue;
+}
+
+.indicadores .collection .collection-item .sobrepeso {
+  color: orange;
+}
+
+.indicadores .collection .collection-item .obesidade {
+  color: red;
+}

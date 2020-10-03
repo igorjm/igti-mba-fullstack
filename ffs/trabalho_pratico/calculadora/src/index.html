@@ -10,11 +10,11 @@
     />
 
     <link href="./css/styles.css" rel="stylesheet" />
-    <title>Cálculadora</title>
+    <title>Calculadora</title>
   </head>
 
   <body>
-    <h3 class="center">Cálculadora Básica</h1>
+    <h3 class="center">Calculadora Básica</h1>
 
     <div class="container">
       <div class="row">
@@ -90,6 +90,64 @@
         </div>
       </div>
     </div>
+
+    <h3 class="center">Calculadora IMC</h1>
+
+      <div class="container">
+        <div class="row">
+          <div class="input-field col s4">
+            <input id="inputPeso" type="number" min="0" max="999" maxlength="3"/>
+            <label for="inputPeso">Digite o seu peso em KG:</label>
+          </div>
+  
+          <div class="input-field col s4">
+            <input id="inputAltura" type="number" min="0" max="999" maxlength="3"/>
+            <label for="inputAltura">Digite a sua altura em Centímetros:</label>
+          </div>
+        </div>
+  
+        <div class="row">
+          <div class="results col s6">
+            <div class="input-field">
+              <input
+                id="inputIMC"
+                type="text"
+                readonly
+                placeholder="IMC"
+                class="resultado"
+              />
+              <label for="inputIMC" class="active">Seu IMC é:</label>
+              <input
+                id="inputResultadoIMC"
+                type="text"
+                readonly
+                placeholder="Você está..."
+                class="resultado"
+              />
+            </div>
+            <div class="row indicadores">
+              <span>Indicadores</h4>
+              <ul class="collection">
+                <li class="collection-item">
+                  <span><strong class="magreza">Magreza</strong>, quando o resultado é menor que 18,5 kg/m2;</span>
+                </li>
+                <li class="collection-item ">
+                  <span><strong class="normal">Normal</strong>, quando o resultado está entre 18,5 e 24,9 kg/m2;</span>
+                </li>
+                <li class="collection-item ">
+                  <span><strong class="sobrepeso">Sobrepeso</strong>, quando o resultado está entre 24,9 e 30 kg/m2;</span>
+                </li>
+                <li class="collection-item">
+                  <span><strong class="obesidade">Obesidade</strong>, quando o resultado é maior que 30 kg/m2;</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="bg-image col s6">
+            <img src="../public/un_bg_imc.png" alt="Background Mathematics"/>
+          </div>
+        </div>
+      </div>
 
     <!-- Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
