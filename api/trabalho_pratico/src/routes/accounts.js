@@ -23,14 +23,7 @@ router.post("/", async (req, res) => {
     res.status(400).send({ Error: err.message });
     logger.error(`POST /account - ${err.message}`);
   }
-  // sempre usar o método try..catch para evitar que erros quebrem a API!
 });
-
-// writeFile exige três parâmetros - nome do arquivo, conteúdo dele, função erro
-// writeFile sempre apaga o conteúdo velho e adiciona o novo
-// appendFile adiciona o conteúdo como conteúdo novo (não serve para json)
-
-//res.send('post account'); // se não retornar nada, a requisição fica travada
 
 // método GET
 router.get("/", async (req, res) => {
@@ -46,8 +39,6 @@ router.get("/", async (req, res) => {
   }
 });
 
-// método get por ID - receber parâmetro, receber o dado do ID e
-// devolver para a tela do usuário o usuário do ID
 router.get("/:id", async (req, res) => {
   //req.params.id;
   try {
